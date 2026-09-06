@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block title %}Login{% endblock %}{% block content %}<div class='auth card'><h1>Login</h1><form method='post'>{% csrf_token %}{{ form.as_p }}<button>Login</button></form><p><a href='/accounts/password_reset/'>Forgot password?</a></p><p>No account? <a href='/accounts/register/'>Register</a></p></div>{% endblock %}

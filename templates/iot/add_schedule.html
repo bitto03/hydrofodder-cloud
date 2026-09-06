@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<div class='card narrow'><h1>Add Schedule — {{ device.name }}</h1><p>Times are stored timezone-aware; use your configured server/user timezone for this MVP.</p><form method='post'>{% csrf_token %}{{ form.as_p }}<button>Save Schedule</button></form></div>{% endblock %}

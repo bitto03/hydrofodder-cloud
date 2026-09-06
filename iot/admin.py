@@ -1,0 +1,15 @@
+from django.contrib import admin
+from .models import Device, DeviceCredential, Relay, SensorReading, DeviceCommand, RelaySchedule, DeviceEvent
+@admin.register(Device)
+class DeviceAdmin(admin.ModelAdmin): list_display=('name','uid','owner','is_enabled','last_seen','firmware_version'); search_fields=('name','uid','owner__email'); list_filter=('is_enabled',)
+@admin.register(Relay)
+class RelayAdmin(admin.ModelAdmin): list_display=('device','channel','desired_state','actual_state','updated_at')
+@admin.register(SensorReading)
+class SensorReadingAdmin(admin.ModelAdmin): list_display=('device','temperature_c','humidity_pct','recorded_at'); list_filter=('device',)
+@admin.register(DeviceCommand)
+class CommandAdmin(admin.ModelAdmin): list_display=('id','device','relay','requested_state','status','created_at','acknowledged_at'); list_filter=('status',)
+@admin.register(RelaySchedule)
+class ScheduleAdmin(admin.ModelAdmin): list_display=('device','relay','interval_seconds','run_seconds','enabled','next_run_at')
+@admin.register(DeviceEvent)
+class EventAdmin(admin.ModelAdmin): list_display=('device','level','event_type','message','created_at'); list_filter=('level','event_type')
+admin.site.register(DeviceCredential)
